@@ -31,7 +31,26 @@ Initilizing the player with options:
 
 The following options can be set via 
 
-<code>animationDuration</code>: sets the animation\(transition\) speed in milliseconds between slides. Default: <code>500</code> <code>rotates</code>: enables/disables auto rotation when true. Default: <code>true</code>
+####Animation Duration
+
+<code>animationDuration</code>: sets the animation\(transition\) speed in milliseconds between slides. Default: <code>500</code> 
+
+####Rotation
+
+<code>rotates</code>: enables/disables auto rotation when true. Default: <code>true</code>
+
+####Transition Interval
+
 <code>interval</code>: sets the length of time between transitions in milliseconds. Default: <code>8000</code>
+
+####Item Class
+
 <code>itemClass</code>: the CSS class that denotes a slide item. Only ttems tagged with the specified class will be presumed to be a "slide." Default: <code>'player-item'</code>
+
+####Pagers
+
 <code>hasPagers</code>: enables/disables control elements in the form of buttons that align to each slide. Default: <code>true</code>
+
+## Change Log
+
+* 2014-02-10:	(v1.1.2) Cleaned up source, added basic comments, made minor udpates to plugin organization.
