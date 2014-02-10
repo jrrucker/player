@@ -10,13 +10,14 @@ The last release of this plugin was v1.1.2 on 2014-02-10.
 
 ###Basic Usage
 
-<code>
+The most basic usage case of the player:
+
 	$(elem).player();
-</code>
 
 ###Advanced Usage
 
-<code>
+Initilizing the player with options:
+
 	$(elem).player({
 		animationDuration: 500,
 		rotates: true,
@@ -24,12 +25,13 @@ The last release of this plugin was v1.1.2 on 2014-02-10.
 		itemClass: 'player-item',
 		hasPagers: true
 	});
-</code>
+
 
 ###Configuratble Options
 
-* <code>animationDuration</code>: sets the animation\(transition\) speed in milliseconds between slides. Default: <code>500</code>
-* <code>rotates</code>: enables/disables auto rotation when true. Default: <code>true</code>
-* <code>interval</code>: sets the length of time between transitions in milliseconds. Default: <code>8000</code>
-* <code>itemClass</code>: the CSS class that denotes a slide item. Only ttems tagged with the specified class will be presumed to be a "slide." Default: <code>'player-item'</code>
-* <code>hasPagers</code>: enables/disables control elements in the form of buttons that align to each slide. Default: <code>true</code>
+The following options can be set via 
+
+<code>animationDuration</code>: sets the animation\(transition\) speed in milliseconds between slides. Default: <code>500</code> <code>rotates</code>: enables/disables auto rotation when true. Default: <code>true</code>
+<code>interval</code>: sets the length of time between transitions in milliseconds. Default: <code>8000</code>
+<code>itemClass</code>: the CSS class that denotes a slide item. Only ttems tagged with the specified class will be presumed to be a "slide." Default: <code>'player-item'</code>
+<code>hasPagers</code>: enables/disables control elements in the form of buttons that align to each slide. Default: <code>true</code>
