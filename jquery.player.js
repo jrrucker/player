@@ -7,6 +7,8 @@
 
 ;(function( $, window, document, undefined ){
 
+	// jQuery Player constructor
+	
 	var Player = function( elem, options ){
 		this.elem = elem;
 		this.$elem  = $( elem );
@@ -14,20 +16,30 @@
 		this.metadata = this.$elem.data('player-options');
 	};
 	
+	// Build Player guts by attaching to prototype
+	
 	Player.prototype = {
+		
+		// default Player values
 		
 		defaults: {
 			animationDuration: 500,
 			rotates: true,
 			interval: 8000,
 			itemClass: 'player-item',
-			hasPagers: true,
-			minRotateWidth: 0
+			hasPagers: true
 		},
+		
+		// initialize the player based upon
+		// passed configuration
 		
 		init: function() {
 			
+			// generate configuration from defaults, options, and data attributes
+			
 			this.config = $.extend( {}, this.defaults, this.options, this.metadata );
+			
+			// basically creating 
 			
 			this.$container = this.$elem;
 			this.$items = this.$elem.find( '.' + this.config.itemClass );
@@ -36,43 +48,32 @@
 			this.features = {};
 			this.isAnimating = false;
 			
+			// check/enable pagers
+			
 			if( !!this.config.hasPagers ){
 				this.features.pagers = new this.Pagers( this );
 				this.features.pagers.init();
 			}
 			
-			if( !!this.config.rotates){
+			// check/enable rotation
+			
+			if( !!this.config.rotates ){
 				
-				if(this.config.minRotateWidth > 0){
-
-					if($('body').width() >= this.config.minRotateWidth){
-						
-						// start rotation
-						this.rotate();
-						
-					}
-					
-				} else {
-					
-					// start rotation
-					this.rotate();
-				
-				}
+				this.autoRotate();
 				
 				// kill rotation on button click
 				this.features.pagers.$container.find("button").on('click.player',$.proxy(function(){
 					clearInterval(this.t);
 				}, this ));
-				
-				// if resize width set
-				if(this.config.minRotateWidth > 0){
-					this.resize();
-				}
+			
 			}
 			
 			return this;
 			
 		},
+		
+		// enables controls via button elements
+		// specifically, enables one button per slide 
 		
 		Pagers: function ( parent ) {
 			
@@ -121,7 +122,9 @@
 			
 		},
 		
-		rotate: function (){
+		// enables automatic rotation of slides
+		
+		autoRotate: function (){
 			
 			var self = this;
 			
@@ -147,27 +150,16 @@
 			}, this.config.interval );
 			
 		},
-		
-		resize: function(){
-			
-			var self = this;
-			
-			// stop player auto rotation on small devices
-			$(window).resize(function(){
 				
-				if($('body').width() < self.config.minRotateWidth){
-					clearInterval(self.t);
-				} 
-				
-			});
-			
-		},
+		// helper to prepare next slide to transitoin in
 		
 		stageNext: function(next){
 			
 			this.$nextItem = this.$elem.find( '.' + this.config.itemClass + ':eq(' + next + ')' );
 		
 		},
+		
+		// transitions next slide in
 		
 		move: function (){
 			
@@ -191,7 +183,12 @@
 
 	};
 	
+	// inherit player defaults from prototype
+	
 	Player.defaults = Player.prototype.defaults;
+	
+	// initilize player elements based on options
+	// and selectors
 	
 	$.fn.player = function( options ){
 		return this.each( function () {
