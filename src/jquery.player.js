@@ -2,13 +2,12 @@
  * jQuery Player v1.1.2
  * https://github.com/jrrucker/player
  * 
- * Created by Josh Rucker, NC State Unversity Communications
- * http://www.joshrucker.com
- * http://www.ncsu.edu
+ * Created by Josh Rucker (http://www.joshrucker.com), 
+ * NC State Unversity Communications (http://www.ncsu.edu/university-communications/)
  * 
- * Copyright 2014,  Josh Rucker (http://www.ncsu.com)
  * Released under the MIT license
- * 
+ * http://opensource.org/licenses/MIT
+ *
  * Build Date: 2014-02-10
  */
 
@@ -48,14 +47,25 @@
 
 			this.config = $.extend( {}, this.defaults, this.options, this.metadata );
 			
-			// basically creating
+			// denotes if in the middle of a transition
+			
+			this.isAnimating = false;
+			
+			// collection of features enable by user
+			
+			this.features = {};
+			
+			// cached jQuery objects
 			
 			this.$container = this.$elem;
 			this.$items = this.$elem.find( '.' + this.config.itemClass );
-			this.$currentItem = this.$items.first().addClass( 'current-player-item' );
-
-			this.features = {};
-			this.isAnimating = false;
+			this.$currentItem = this.$items.first();
+			
+			// set up slideshow for first slide
+			
+			this.$items.css('display','none');
+			this.$currentItem.addClass( 'current-player-item' );
+			this.$currentItem.css('display','block');
 			
 			// check/enable pagers
 			
@@ -67,14 +77,7 @@
 			// check/enable rotation
 			
 			if( !!this.config.rotates ){
-
 				this.autoRotate();
-				
-				// kill rotation on button click
-				this.features.pagers.$container.find('button').on('click.player',$.proxy(function(){
-					clearInterval(this.t);
-				}, this ));
-			
 			}
 			
 			return this;
@@ -88,23 +91,23 @@
 			
 			var self = this;
 			self.parent = parent;
-
+			
 			self.init = function(){
 				
-				self.$container = $( '<div class="player-pagers" />' );
+				self.$pagerContainer = $( '<div class="player-pagers" />' );
 				
 				for(var i = 0, j = parent.$items.length; i < j; i++){
-					self.$container.append( $( '<button type="button" class="' + ((i === 0) ? 'active ' : '') + 'pager-pagers-item" data-pager-page="' + i + '">Slide ' + i + '</button>' ));
+					self.$pagerContainer.append( $( '<button type="button" class="' + ((i === 0) ? 'active ' : '') + 'pager-pagers-item" data-pager-page="' + i + '">Slide ' + i + '</button>' ));
 				}
 				
-				self.$container.appendTo( parent.$elem );
+				self.$pagerContainer.appendTo( parent.$elem );
 				self.bindEvents();
 				
 			};
 
 			self.bindEvents = function(){
 				
-				self.$container.on( 'click.player', 'button', $.proxy( self.click, this ) );
+				self.$pagerContainer.on( 'click.player', 'button', $.proxy( self.click, this ) );
 			
 			};
 			
@@ -125,6 +128,12 @@
 					
 					}
 					
+					// if rotation is enable, stop it
+					
+					if( !!self.parent.config.rotates ){
+						clearInterval(self.parent.t);
+					}
+					
 				}
 				
 			};
@@ -139,7 +148,7 @@
 			
 			self.t = setInterval(function() {
 				
-				var $currButton = self.features.pagers.$container.find('button.active');
+				var $currButton = self.features.pagers.$pagerContainer.find('button.active');
 				var currIndex = parseInt( $currButton.data( 'pager-page' ), 10 );
 				var nextIndex = 0;
 				
@@ -148,7 +157,7 @@
 				}
 
 				// update active button
-				var $nextButton = self.features.pagers.$container.find('button:eq(' + (nextIndex) + ')');
+				var $nextButton = self.features.pagers.$pagerContainer.find('button:eq(' + (nextIndex) + ')');
 				self.$elem.find('button').removeClass('active');
 				$nextButton.addClass('active');
 				
