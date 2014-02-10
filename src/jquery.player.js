@@ -1,5 +1,5 @@
 /*!
- * jQuery Player
+ * jQuery Player v1.1.2
  * https://github.com/jrrucker/player
  * 
  * Created by Josh Rucker, NC State Unversity Communications
@@ -8,25 +8,29 @@
  * 
  * Copyright 2014,  Josh Rucker (http://www.ncsu.com)
  * Released under the MIT license
+ * 
+ * Build Date: 2014-02-10
  */
 
-;(function( $, window, document, undefined ){
+(function( $, window, document, undefined ){
+
+	'use strict';
 
 	// jQuery Player constructor
-	
+
 	var Player = function( elem, options ){
 		this.elem = elem;
 		this.$elem  = $( elem );
 		this.options = options;
 		this.metadata = this.$elem.data('player-options');
 	};
-	
+
 	// Build Player guts by attaching to prototype
-	
+
 	Player.prototype = {
-		
+
 		// default Player values
-		
+
 		defaults: {
 			animationDuration: 500,
 			rotates: true,
@@ -34,22 +38,22 @@
 			itemClass: 'player-item',
 			hasPagers: true
 		},
-		
+
 		// initialize the player based upon
 		// passed configuration
-		
+
 		init: function() {
-			
+
 			// generate configuration from defaults, options, and data attributes
-			
+
 			this.config = $.extend( {}, this.defaults, this.options, this.metadata );
 			
-			// basically creating 
+			// basically creating
 			
 			this.$container = this.$elem;
 			this.$items = this.$elem.find( '.' + this.config.itemClass );
-			this.$currentItem = this.$items.first().addClass( "current-player-item" );
-						
+			this.$currentItem = this.$items.first().addClass( 'current-player-item' );
+
 			this.features = {};
 			this.isAnimating = false;
 			
@@ -63,11 +67,11 @@
 			// check/enable rotation
 			
 			if( !!this.config.rotates ){
-				
+
 				this.autoRotate();
 				
 				// kill rotation on button click
-				this.features.pagers.$container.find("button").on('click.player',$.proxy(function(){
+				this.features.pagers.$container.find('button').on('click.player',$.proxy(function(){
 					clearInterval(this.t);
 				}, this ));
 			
@@ -78,13 +82,13 @@
 		},
 		
 		// enables controls via button elements
-		// specifically, enables one button per slide 
+		// specifically, enables one button per slide
 		
 		Pagers: function ( parent ) {
 			
 			var self = this;
 			self.parent = parent;
-						
+
 			self.init = function(){
 				
 				self.$container = $( '<div class="player-pagers" />' );
@@ -111,11 +115,11 @@
 					var $button = $( event.currentTarget ),
 						pageNum = parseInt ( $button.data( 'pager-page' ), 10 );
 					
-					if(!$button.hasClass("active")){
-								
-						parent.$elem.find("button").removeClass("active");
-						$button.addClass("active");
-							
+					if(!$button.hasClass('active')){
+
+						parent.$elem.find('button').removeClass('active');
+						$button.addClass('active');
+
 						parent.stageNext(pageNum);
 						parent.move();
 					
@@ -135,7 +139,7 @@
 			
 			self.t = setInterval(function() {
 				
-				var $currButton = self.features.pagers.$container.find("button.active");
+				var $currButton = self.features.pagers.$container.find('button.active');
 				var currIndex = parseInt( $currButton.data( 'pager-page' ), 10 );
 				var nextIndex = 0;
 				
@@ -144,9 +148,9 @@
 				}
 
 				// update active button
-				var $nextButton = self.features.pagers.$container.find("button:eq(" + (nextIndex) + ")");
-				self.$elem.find("button").removeClass("active");
-				$nextButton.addClass("active");
+				var $nextButton = self.features.pagers.$container.find('button:eq(' + (nextIndex) + ')');
+				self.$elem.find('button').removeClass('active');
+				$nextButton.addClass('active');
 				
 				// transition slide
 				self.stageNext(nextIndex);
@@ -175,9 +179,9 @@
 				
 				self.$nextItem.fadeIn( self.config.animationDuration, function(){
 					
-					self.$currentItem.removeClass("current-player-item");
+					self.$currentItem.removeClass('current-player-item');
 					self.$currentItem = self.$nextItem;
-					self.$currentItem.addClass("current-player-item");
+					self.$currentItem.addClass('current-player-item');
 					self.isAnimating = false;
 					
 				});
