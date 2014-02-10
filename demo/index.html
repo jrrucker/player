@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery Demo</title>
+    <link href="css/reset.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="css/main.css" type="text/css" rel="stylesheet" media="screen" />
+    
+</head>
+
+<body class="homepage" data-features="slider">
+    
+    <header role="banner">
+        <div class="wrapper">
+            <h1>Adventures in Javascript</h1>
+        </div><!-- end .wrapper -->
+    </header>
+
+    <section id="main">
+    
+        <div class="slider" data-slider-options="">
+            
+            <div class="slider-items">
+            
+                <div class="slider-item current-slider-item" style="background-image: url('http://placehold.it/960x300/cc0000');">
+                    <h2 class="slider-item-description">Slide One</h2>
+                </div>
+                <div class="slider-item" style="background-image: url('http://placehold.it/960x300/000000');">
+                    <h2 class="slider-item-description">Slide Two</h2>
+                </div>
+                <div class="slider-item" style="background-image: url('http://placehold.it/960x300/ffffff');">
+                    <h2 class="slider-item-description">Slide Three</h2>
+                </div>
+                
+            </div>
+                
+        </div><!-- end .slider -->
+        
+        <div id="main-text">
+            
+            <div class="wrapper">
+        
+                <h2>Sub-heading</h2>
+        
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada augue a ipsum malesuada, nec semper dolor dapibus. In feugiat eros ultrices commodo feugiat. Suspendisse ultricies volutpat enim, vel sagittis libero laoreet nec. Donec convallis interdum sem, eu bibendum lectus elementum eu. Cras sed purus vel enim mollis laoreet in eget urna. Cras quis turpis a nisi volutpat lacinia. Donec et dignissim nisl, non blandit elit. Vestibulum tristique felis ligula, in fermentum sapien lacinia nec. Donec et tellus ipsum.</p>
+
+                <p>Sed quis condimentum felis, quis auctor orci. Praesent a tortor a leo congue aliquet. Nullam sollicitudin mi sit amet ultricies laoreet. Nulla porttitor mattis rutrum. In quis consectetur urna. Vivamus pulvinar dolor vitae dui bibendum, in condimentum lectus porttitor. Nulla facilisi. Ut at fringilla lorem. Maecenas auctor tristique magna ut rhoncus. Maecenas dictum cursus purus, vitae feugiat mi malesuada ac. Vestibulum ut sollicitudin urna, id hendrerit dui. Proin in sapien nisi. Nunc dignissim aliquam pharetra.</p>
+
+                
+            </div><!-- end .wrapper -->
+        
+        </div><!-- end #main-text -->
+        
+    </section><!-- end #main -->
+        
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+    <script src="js/jquery.player.min.js"></script>
+    <script>
+		$(document).ready(function(){
+			$('.slider').player({
+				rotate: true
+			});
+		});
+	</script>
+    
+</body>
+</html>
