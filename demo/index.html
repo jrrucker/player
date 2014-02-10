@@ -18,28 +18,28 @@
     </header>
 
     <section id="main">
+		
+		<div class="wrapper">
     
-        <div class="slider" data-slider-options="">
+	        <div class="player" data-slider-options="">
             
-            <div class="slider-items">
+	            <div class="player-items">
             
-                <div class="slider-item current-slider-item" style="background-image: url('http://placehold.it/960x300/cc0000');">
-                    <h2 class="slider-item-description">Slide One</h2>
-                </div>
-                <div class="slider-item" style="background-image: url('http://placehold.it/960x300/000000');">
-                    <h2 class="slider-item-description">Slide Two</h2>
-                </div>
-                <div class="slider-item" style="background-image: url('http://placehold.it/960x300/ffffff');">
-                    <h2 class="slider-item-description">Slide Three</h2>
-                </div>
+	                <div class="player-item" style="background-image: url('http://placehold.it/960x300/cc0000');">
+	                    <h2 class="player-item-description">Slide One</h2>
+	                </div>
+	                <div class="player-item" style="background-image: url('http://placehold.it/960x300/000000');">
+	                    <h2 class="player-item-description">Slide Two</h2>
+	                </div>
+	                <div class="player-item" style="background-image: url('http://placehold.it/960x300/ffffff');">
+	                    <h2 class="player-item-description">Slide Three</h2>
+	                </div>
                 
-            </div>
+	            </div>
                 
-        </div><!-- end .slider -->
+	        </div><!-- end .slider -->
         
-        <div id="main-text">
-            
-            <div class="wrapper">
+        	<div id="main-text">
         
                 <h2>Sub-heading</h2>
         
@@ -47,19 +47,18 @@
 
                 <p>Sed quis condimentum felis, quis auctor orci. Praesent a tortor a leo congue aliquet. Nullam sollicitudin mi sit amet ultricies laoreet. Nulla porttitor mattis rutrum. In quis consectetur urna. Vivamus pulvinar dolor vitae dui bibendum, in condimentum lectus porttitor. Nulla facilisi. Ut at fringilla lorem. Maecenas auctor tristique magna ut rhoncus. Maecenas dictum cursus purus, vitae feugiat mi malesuada ac. Vestibulum ut sollicitudin urna, id hendrerit dui. Proin in sapien nisi. Nunc dignissim aliquam pharetra.</p>
 
-                
-            </div><!-- end .wrapper -->
+         	</div><!-- end #main-text -->
         
-        </div><!-- end #main-text -->
-        
+		</div><!-- end .wrapper -->
+		
     </section><!-- end #main -->
         
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
-    <script src="js/jquery.player.min.js"></script>
+    <script src="js/jquery.player.js"></script>
     <script>
 		$(document).ready(function(){
-			$('.slider').player({
+			$('.player').player({
 				rotate: true
 			});
 		});

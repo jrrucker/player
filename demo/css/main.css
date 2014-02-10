@@ -26,19 +26,20 @@ header h1{
  ** Main 
  ***********************************************/
 
-.slider{
+.player{
 	width: 100%;
 	height: 400px;
 	overflow: hidden;
+	position: relative;
 }
 
-.slider-items{
+.player-items{
 	width: 100%;
 	height: 100%;
 	position: relative;
 }
 
-.slider-item{
+.player-item{
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -48,15 +49,15 @@ header h1{
 	background-size: cover;
 }
 
-.slider .previous-slider-item{
+.player .previous-player-item{
 	left: -100%;
 }
 
-.slider .next-slider-item{
+.player .next-player-item{
 	left: 100%;
 }
 
-.slider-item h2{
+.player-item h2{
 	position: absolute;
 	bottom: 50px;
 	left: 50%;
@@ -71,16 +72,16 @@ header h1{
 	text-align: center;
 }
 
-.slider-pagers{display: none;}
+.player-pagers{
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+}
 
 #main-text{
 	font-size: 1.8em;
 	line-height: 1.5em;
-}
-
-#main-text .wrapper{
-	-moz-column-count: 2;
-	-moz-column-gap: 1.5em;
+	margin-top: 2em;
 }
 
 #main-text h2{
