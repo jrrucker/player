@@ -1,8 +1,13 @@
-/**
- * @name jQuery Player
- * @author Josh Rucker, NC State Unversity Communications
- * @copyright (cc) Josh Rucker (http://www.ncsu.com)
+/*!
+ * jQuery Player
+ * https://github.com/jrrucker/player
  * 
+ * Created by Josh Rucker, NC State Unversity Communications
+ * http://www.joshrucker.com
+ * http://www.ncsu.edu
+ * 
+ * Copyright 2014,  Josh Rucker (http://www.ncsu.com)
+ * Released under the MIT license
  */
 
 ;(function( $, window, document, undefined ){
